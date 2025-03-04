@@ -1,30 +1,40 @@
 package pdl.backend;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Image {
-  private static Long count = Long.valueOf(0);
-  private Long id;
-  private String name;
-  private byte[] data;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private byte[] data;
 
-  public Image(final String name, final byte[] data) {
-    id = count++;
-    this.name = name;
-    this.data = data;
-  }
+    public Image() {
+        // Constructeur par défaut nécessaire pour JPA
+    }
 
-  public long getId() {
-    return id;
-  }
+    public Image(String name, byte[] data) {
+        this.name = name;
+        this.data = data;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setName(final String name) {
-    this.name = name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public byte[] getData() {
-    return data;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
 }
